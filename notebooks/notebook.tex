@@ -1,0 +1,478 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{DipoleForce\_SDK}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}308}]:} \PY{k}{using} \PY{n}{PyPlot}
+          \PY{k}{using} \PY{n}{Unitful}
+\end{Verbatim}
+
+
+    Here I explore the parameters required to create a SDK interferometer
+using the dipole force. The sequence goes like this
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Prepare the atom in a ground state
+\item
+  apply a microwave \(\pi/2\) pulse to prepare atom in a superposition
+\item
+  apply a pulse with a focused beam such that the atom experiences the
+  maximum gradient
+
+  \begin{itemize}
+  \tightlist
+  \item
+    this will kick the atom in a direction that will depend on the state
+  \end{itemize}
+\item
+  wait a time T
+\item
+  apply a microwave \(\pi\) pulse to swap atomic states
+\item
+  apply a pulse with a focused beam such that the atom experiences a
+  field gradient
+
+  \begin{itemize}
+  \tightlist
+  \item
+    this will redirect the wavepackets by kicking the atom in an
+    opposite direction as in line 3 above
+  \end{itemize}
+\item
+  wait a time T
+\item
+  apply a microwave \(\pi/2\) pulse to create a superposition
+\item
+  apply a pulse with a focused beam such that the atom experiences a
+  field gradient
+
+  \begin{itemize}
+  \tightlist
+  \item
+    this will be a kick in oppositie direction for each state
+  \end{itemize}
+\end{enumerate}
+
+    \begin{figure}
+\centering
+\includegraphics{imgs/SDK_FieldGradient/AIDiagram.jpg}
+\caption{title}
+\end{figure}
+
+    The dipole force on an atom is equal to the gradient of the dipole
+potential by the following equation \(\vec{F} = -\vec{\Delta}U(r,z)\).
+The dipole potential can be written in terms of the atomic
+polarizability \(\alpha\),
+\(U = -\frac{1}{2\epsilon_0c}Re(\alpha) I(r)\).
+
+The acceleration the atom experiences can be calculated using Newton's
+second law, \(\vec{a}=\vec{F}/m\).
+
+    \subsubsection{Define Constants}\label{define-constants}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}177}]:} \PY{n}{c} \PY{o}{=} \PY{l+m+mf}{3e8}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{/}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{;} \PY{c}{\PYZsh{} m/s}
+          \PY{n}{ϵ0} \PY{o}{=} \PY{l+m+mf}{8.85e\PYZhy{}12}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{C}\PY{l+s}{/}\PY{l+s}{(}\PY{l+s}{V}\PY{l+s}{*}\PY{l+s}{m}\PY{l+s}{)}\PY{l+s}{\PYZdq{}}\PY{p}{;} \PY{c}{\PYZsh{} C/(V*m)}
+          \PY{n}{amu} \PY{o}{=} \PY{l+m+mf}{1.67e\PYZhy{}27}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{k}\PY{l+s}{g}\PY{l+s}{\PYZdq{}}\PY{p}{;} \PY{c}{\PYZsh{} kg}
+          \PY{n}{g} \PY{o}{=} \PY{l+m+mi}{10}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{/}\PY{l+s}{s}\PY{l+s}{\PYZca{}}\PY{l+s}{2}\PY{l+s}{\PYZdq{}}\PY{p}{;}
+          \PY{n}{kB} \PY{o}{=} \PY{l+m+mf}{1.38e\PYZhy{}23}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{J}\PY{l+s}{/}\PY{l+s}{K}\PY{l+s}{\PYZdq{}}\PY{p}{;}
+\end{Verbatim}
+
+
+    \subsubsection{Atom Characteristics}\label{atom-characteristics}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}125}]:} \PY{n}{Γ} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{*}\PY{n+nb}{π}\PY{o}{*}\PY{l+m+mf}{4.575e6}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{H}\PY{l+s}{z}\PY{l+s}{\PYZdq{}}\PY{p}{;} \PY{c}{\PYZsh{} Hz}
+          \PY{n}{Isat} \PY{o}{=} \PY{l+m+mf}{2.5}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{m}\PY{l+s}{W}\PY{l+s}{/}\PY{l+s}{c}\PY{l+s}{m}\PY{l+s}{\PYZca{}}\PY{l+s}{2}\PY{l+s}{\PYZdq{}}\PY{p}{;} \PY{c}{\PYZsh{} mW/cm\PYZca{}2; π\PYZhy{}polarized light}
+          \PY{n}{m} \PY{o}{=} \PY{l+m+mi}{133}\PY{o}{*}\PY{n}{amu}\PY{p}{;} \PY{c}{\PYZsh{} kg}
+          \PY{n}{λ} \PY{o}{=} \PY{l+m+mi}{895}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{n}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{;} \PY{c}{\PYZsh{} D1 transition wavelength}
+          \PY{n}{ω0} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{*}\PY{n+nb}{π}\PY{o}{*}\PY{n}{c}\PY{o}{/}\PY{n}{λ}\PY{p}{;}
+          \PY{n}{ωhfs} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{*}\PY{n+nb}{pi}\PY{o}{*}\PY{l+m+mf}{9.193}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{G}\PY{l+s}{H}\PY{l+s}{z}\PY{l+s}{\PYZdq{}}\PY{p}{;}\PY{c}{\PYZsh{} Hz}
+\end{Verbatim}
+
+
+    \subsubsection{Beam Characteristics}\label{beam-characteristics}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}157}]:} \PY{n}{ω₀} \PY{o}{=} \PY{l+m+mi}{1}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{μ}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{;} \PY{c}{\PYZsh{} cm, beam radius/waist}
+          \PY{n}{s₀} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{;} \PY{c}{\PYZsh{} saturation parameter}
+          \PY{n}{I₀} \PY{o}{=} \PY{n}{s₀}\PY{o}{*}\PY{n}{Isat}\PY{p}{;} \PY{c}{\PYZsh{} W/cm\PYZca{}2}
+          \PY{n}{Δ} \PY{o}{=} \PY{n}{ωhfs}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}266}]:} \PY{k}{function} \PY{n}{Polarizability}\PY{p}{(}\PY{n}{ω}\PY{p}{)}
+              \PY{n}{C} \PY{o}{=} \PY{l+m+mi}{6}\PY{o}{*}\PY{n+nb}{π}\PY{o}{*}\PY{n}{ϵ0}\PY{o}{*}\PY{n}{c}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{p}{;}
+              \PY{k}{return} \PY{n}{C}\PY{o}{*}\PY{p}{(}\PY{n}{Γ}\PY{o}{/}\PY{n}{ω0}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{ω0}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{\PYZhy{}}\PY{n}{ω}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{o}{\PYZhy{}}\PY{n+nb}{im}\PY{o}{*}\PY{p}{(}\PY{n}{ω}\PY{o}{\PYZca{}}\PY{l+m+mi}{3}\PY{o}{/}\PY{n}{ω0}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{Γ}\PY{p}{)}
+          \PY{k}{end}
+          \PY{k}{function} \PY{n}{DipPotential}\PY{p}{(}\PY{n}{ω}\PY{p}{,}\PY{n+nb}{I}\PY{p}{)}
+              \PY{n}{A} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{ϵ0}\PY{o}{*}\PY{n}{c}\PY{p}{)}\PY{p}{;}
+              \PY{k}{return} \PY{n}{A}\PY{o}{*}\PY{n}{real}\PY{p}{(}\PY{n}{Polarizability}\PY{p}{(}\PY{n}{ω}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n+nb}{I}\PY{p}{;}
+          \PY{k}{end}
+          \PY{k}{function} \PY{n}{GaussianIntensity}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{ω₀}\PY{p}{,}\PY{n}{I₀}\PY{p}{)}
+              \PY{k}{return} \PY{n}{I₀}\PY{o}{*}\PY{n}{exp}\PY{o}{.}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{r}\PY{o}{.\PYZca{}}\PY{l+m+mi}{2}\PY{o}{/}\PY{n}{ω₀}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}
+          \PY{k}{end}
+          \PY{k}{function} \PY{n}{DipForce}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{ω}\PY{p}{,}\PY{n}{ω₀}\PY{p}{,}\PY{n}{I₀}\PY{p}{)}
+              \PY{n}{U₀} \PY{o}{=} \PY{n}{DipPotential}\PY{p}{(}\PY{n}{ω}\PY{p}{,}\PY{n}{I₀}\PY{p}{)}\PY{p}{;}
+              \PY{n}{B} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{r}\PY{o}{/}\PY{n}{ω₀}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{;}
+              \PY{k}{return} \PY{n}{U₀}\PY{o}{*}\PY{n}{B}\PY{o}{.*}\PY{n}{exp}\PY{o}{.}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{r}\PY{o}{.\PYZca{}}\PY{l+m+mi}{2}\PY{o}{/}\PY{n}{ω₀}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}
+          \PY{k}{end}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}266}]:} DipForce (generic function with 2 methods)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}262}]:} \PY{n}{r} \PY{o}{=} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{o}{:}\PY{l+m+mf}{0.1}\PY{o}{:}\PY{l+m+mi}{3}\PY{p}{;}\PY{p}{]}\PY{o}{.*}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{μ}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{;}
+          \PY{n}{F} \PY{o}{=} \PY{n}{DipForce}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{ω0}\PY{o}{\PYZhy{}}\PY{n}{Δ}\PY{p}{,}\PY{n}{ω₀}\PY{p}{,}\PY{n}{I₀}\PY{p}{)}\PY{p}{;}
+          \PY{n}{a} \PY{o}{=} \PY{n}{upreferred}\PY{o}{.}\PY{p}{(}\PY{n}{F}\PY{p}{)}\PY{o}{/}\PY{n}{m}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}274}]:} \PY{n}{figure}\PY{p}{;}
+          \PY{n}{plot}\PY{p}{(}\PY{n}{ustrip}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{n}{ustrip}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{)}
+          \PY{c}{\PYZsh{}vlines([\PYZhy{}1,1],\PYZhy{}3e12,3e12)}
+          \PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{c}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{[}\PY{l+s}{m}\PY{l+s}{/}\PY{l+s}{s}\PY{l+s}{²}\PY{l+s}{]}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{[}\PY{l+s}{μ}\PY{l+s}{m}\PY{l+s}{]}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+          \PY{n}{plot}\PY{p}{(}\PY{n}{ustrip}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{ustrip}\PY{p}{(}\PY{n}{GaussianIntensity}\PY{p}{(}\PY{n}{r}\PY{p}{,}\PY{n}{ω₀}\PY{p}{,}\PY{n}{I₀}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+          \PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{l+s}{\PYZdq{}}\PY{l+s}{A}\PY{l+s}{c}\PY{l+s}{c}\PY{l+s}{e}\PY{l+s}{l}\PY{l+s}{e}\PY{l+s}{r}\PY{l+s}{a}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{B}\PY{l+s}{e}\PY{l+s}{a}\PY{l+s}{m}\PY{l+s}{ }\PY{l+s}{I}\PY{l+s}{n}\PY{l+s}{t}\PY{l+s}{e}\PY{l+s}{n}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{y}\PY{l+s}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    From the graph above we see that the direction of the kick is dependent
+on which side of the beam center the atom is on. Also, in order to
+experience a kick the atom has to be within the beam profile as
+expected. The maximum kick occurs at
+\(r_{max} = \pm\frac{\omega_0}{2}\).
+
+    Knowing the maximum acceleration, how long should we wait to ensure we
+can drive atom back toward the center?
+
+    \subsubsection{Kinematic Eqautions}\label{kinematic-eqautions}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}293}]:} \PY{n}{t} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{o}{:}\PY{l+m+mf}{0.01}\PY{o}{:}\PY{l+m+mi}{200}\PY{p}{;}\PY{p}{]}\PY{o}{.*}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{μ}\PY{l+s}{s}\PY{l+s}{\PYZdq{}}\PY{p}{;}
+          \PY{n}{amax} \PY{o}{=} \PY{n}{maximum}\PY{p}{(}\PY{n}{a}\PY{p}{)}\PY{p}{;}
+          \PY{n}{x} \PY{o}{=} \PY{n}{upreferred}\PY{o}{.}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{amax}\PY{o}{.*}\PY{n}{t}\PY{o}{.\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}302}]:} \PY{n}{figure}\PY{p}{;}
+          \PY{n}{x} \PY{o}{=} \PY{n}{uconvert}\PY{o}{.}\PY{p}{(}\PY{n}{u}\PY{l+s}{\PYZdq{}}\PY{l+s}{μ}\PY{l+s}{m}\PY{l+s}{\PYZdq{}}\PY{p}{,}\PY{n}{x}\PY{p}{)}
+          \PY{n}{plot}\PY{p}{(}\PY{n}{ustrip}\PY{p}{(}\PY{n}{t}\PY{p}{)}\PY{p}{,}\PY{n}{ustrip}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+          \PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{P}\PY{l+s}{o}\PY{l+s}{s}\PY{l+s}{i}\PY{l+s}{t}\PY{l+s}{i}\PY{l+s}{o}\PY{l+s}{n}\PY{l+s}{ }\PY{l+s}{[}\PY{l+s}{μ}\PY{l+s}{m}\PY{l+s}{]}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{T}\PY{l+s}{i}\PY{l+s}{m}\PY{l+s}{e}\PY{l+s}{ }\PY{l+s}{[}\PY{l+s}{μ}\PY{l+s}{s}\PY{l+s}{]}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+          \PY{c}{\PYZsh{}hlines(ustrip(ω₀)/2,0,200)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The above plot assumes the atom starts off at the maximum location to
+experience the largest acceleration. It then proceeds to accelerate and
+change position. In this case it starts off at the position of
+\(\omega_0/2\) and thus is constrained to move a maximum distance of
+\(\omega_0/2\) before it leaves the beam intensity region.
+
+    Our current capabilities. 1. microwave \(\pi\) pulse: 100-200 \(\mu s\)
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
